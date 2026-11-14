@@ -1,6 +1,6 @@
 # Review of the LLM-generated CrochetPARADE dataset
 
-Scope: all 323 entries of `dsl_patterns.json` at upstream revision `5ee0179`. Every entry was compiled with the real CrochetPARADE parser (`parse64.js`), checked for internal stitch-count consistency, and — where the English source is available (234 entries, CrochetBench text for the same pattern ID) — compared with the English. The creator's `confidence` field is left untouched; this review's own grade is in `review_report.json`.
+Scope: all 323 entries of `dsl_patterns.json` at upstream revision `5ee0179`. Every entry was compiled with the real CrochetPARADE parser (`parse64.js`), checked for internal stitch-count consistency, and — where the English source is available (234 entries, CrochetBench text for the same pattern ID) — compared with the English. The creator's `confidence` field is left untouched; this review's own grade is added to each entry as `review_grade` (A–D, defined below) and repeated in `review_report.json`.
 
 ## Results
 
@@ -9,7 +9,7 @@ Scope: all 323 entries of `dsl_patterns.json` at upstream revision `5ee0179`. Ev
 | Entries that compile | 89 of 323 | 319 of 323 |
 | Entries where every round works exactly the previous round and matches the counts quoted in its comments | 40 | 250 |
 
-277 entries changed in total; 102 of them beyond removing fences and preamble. Only the `dsl` field was touched; schema, key order and JSON formatting are unchanged.
+277 entries changed in total; 102 of them beyond removing fences and preamble. Only the `dsl` field was edited and one field, `review_grade`, was added to each entry; all other fields, key order and JSON formatting are unchanged.
 
 ## Main findings
 
@@ -80,7 +80,7 @@ English alignment by creator confidence (entries with English and at least five 
 
 ## Files
 
-- `dsl_patterns.json` — corrected dataset (same schema).
+- `dsl_patterns.json` — corrected dataset (original schema plus `review_grade`).
 - `review/review_report.json` — per-entry measures before and after, changes, grade.
 - `review/reviewer_notes.json` — per-entry reviewer notes: each change with its reason, source inconsistencies, missing pieces.
 - `review/tools/` — scripts to reproduce the checks (`make_parser.py` builds a Node module from upstream `parse64.js`; `check.py FILE.cp` checks one pattern).
